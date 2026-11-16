@@ -6,7 +6,7 @@ import { IoSearch } from "react-icons/io5";
 
 const ShopNavbar = () => {
   return (
-    <div className="w-full py-4 flex items-center justify-between bg-neutral-100 px-10">
+    <div className="w-full py-4 flex items-center justify-between bg-white px-16">
       <div className="flex items-center gap-2">
         <FaShopify className="text-3xl text-blue-600" />
         <h2 className="text-3xl font-bold text-neutral-900">
