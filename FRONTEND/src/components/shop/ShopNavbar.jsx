@@ -6,7 +6,7 @@ import { IoSearch } from "react-icons/io5";
 
 const ShopNavbar = () => {
   return (
-    <div className="w-full py-4 flex items-center justify-between bg-white px-16">
+    <div className="w-full py-6 flex items-center justify-between bg-white px-16">
       <div className="flex items-center gap-2">
         <FaShopify className="text-3xl text-blue-600" />
         <h2 className="text-3xl font-bold text-neutral-900">
@@ -23,19 +23,19 @@ const ShopNavbar = () => {
       </div>
       <div className="flex items-center gap-8">
         <div className="relative">
-          <FiHeart className="text-2xl text-neutral-900" />
+          <FiHeart className="text-2xl text-neutral-900 hover:text-blue-500 cursor-pointer transition-all duration-200" />
           <div className="absolute -top-2 -right-2 w-5 h-5 text-xs bg-blue-500/80 backdrop-blur-lg rounded-full flex items-center justify-center text-white">
             9
           </div>
         </div>
         <div className="relative">
-          <CgShoppingCart className="text-2xl text-neutral-900" />
+          <CgShoppingCart className="text-2xl hover:text-blue-500 text-neutral-900 cursor-pointer transition-all duration-200" />
           <div className="absolute -top-2 -right-2 w-5 h-5 text-xs bg-blue-500/80 backdrop-blur-lg rounded-full flex items-center justify-center text-white">
             9
           </div>
         </div>
         <div>
-          <FiUser className="text-2xl text-neutral-900" />
+          <FiUser className="text-2xl text-neutral-900 hover:text-blue-500 cursor-pointer transition-all duration-200" />
         </div>
       </div>
     </div>

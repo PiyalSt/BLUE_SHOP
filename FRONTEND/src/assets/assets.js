@@ -15,6 +15,12 @@ import product_09 from "./product_09.webp";
 import product_10 from "./product_10.webp";
 import product_11 from "./product_11.webp";
 import product_12 from "./product_12.webp";
+import brand_01 from "./brand_01.png"
+import brand_02 from "./brand_02.png"
+import brand_03 from "./brand_03.png"
+import brand_04 from "./brand_04.png"
+import brand_05 from "./brand_05.png"
+import adsBanner from "./adsBanner.jpeg"
 
 const assets = {
   slider_01,
@@ -34,6 +40,12 @@ const assets = {
   product_10,
   product_11,
   product_12,
+  brand_01,
+  brand_02,
+  brand_03,
+  brand_04,
+  brand_05,
+  adsBanner,
 };
 
 export default assets;
@@ -124,3 +136,11 @@ export const products = [
     bestProduct: false,
   },
 ];
+
+export const brands = [
+  {id: 1, imgURL: brand_01},
+  {id: 2, imgURL: brand_02},
+  {id: 3, imgURL: brand_03},
+  {id: 4, imgURL: brand_04},
+  {id: 5, imgURL: brand_05},
+]

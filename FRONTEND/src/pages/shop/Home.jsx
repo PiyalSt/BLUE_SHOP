@@ -8,7 +8,7 @@ import "swiper/css/pagination";
 
 // import required modules
 import { Autoplay, Pagination } from "swiper/modules";
-import assets, { products } from "../../assets/assets";
+import assets, { brands, products } from "../../assets/assets";
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from "react-icons/hi";
 import { HiMiniDevicePhoneMobile } from "react-icons/hi2";
 import { GiCctvCamera, GiDeliveryDrone } from "react-icons/gi";
@@ -22,7 +22,8 @@ import ProductCard from "../../components/common/ProductCard";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 const Home = () => {
-  const swiperRef = useRef();
+  const swiperCategoryRef = useRef();
+  const swiperBestProductRef = useRef();
 
   const category = [
     {
@@ -77,6 +78,7 @@ const Home = () => {
 
   return (
     <div className="bg-neutral-200">
+      {/* Slider */}
       <div className="px-16 py-6 flex flex-col md:flex-row gap-4">
         {/* Slider */}
         <div className="w-full md:w-3/4 relative">
@@ -89,7 +91,7 @@ const Home = () => {
             modules={[Pagination, Autoplay]}
             className="h-full"
             onSwiper={(swiper) => {
-              swiperRef.current = swiper;
+              swiperCategoryRef.current = swiper;
             }}
           >
             <SwiperSlide className="w-full h-full">
@@ -117,13 +119,13 @@ const Home = () => {
 
           {/* Custom Slider Button */}
           <button
-            onClick={() => swiperRef.current?.slidePrev()}
+            onClick={() => swiperCategoryRef.current?.slidePrev()}
             className="absolute top-1/2 -translate-y-1/2 z-50 py-2 px-2 left-4 bg-neutral-100 rounded-lg cursor-pointer"
           >
             <HiOutlineChevronLeft className="text-xl" />
           </button>
           <button
-            onClick={() => swiperRef.current?.slideNext()}
+            onClick={() => swiperCategoryRef.current?.slideNext()}
             className="absolute top-1/2 -translate-y-1/2 z-50 py-2 px-2 right-4 bg-neutral-100 rounded-lg cursor-pointer"
           >
             <HiOutlineChevronRight className="text-xl" />
@@ -201,22 +203,22 @@ const Home = () => {
       <div className="py-10 px-16">
         <div className="flex justify-center flex-col items-center gap-1">
           <h2 className="text-neutral-900 text-4xl font-bold gap-2">
-            Best Products
+            Top Selling Products
           </h2>
           <p className="text-sm text-neutral-800">
             Enjoy Exciting Discounts on your desired Products!
           </p>
         </div>
-        <div className="relative">
+        <div className="relative mt-18">
           <Swiper
-            // autoplay={true}
-            slidesPerView={4}
-            spaceBetween={30}
+            autoplay={true}
+            slidesPerView={5}
+            spaceBetween={20}
             loop={true}
             modules={[Autoplay]}
             className="h-full"
             onSwiper={(swiper) => {
-              swiperRef.current = swiper;
+              swiperBestProductRef.current = swiper;
             }}
           >
             {products.map((item) => (
@@ -231,15 +233,185 @@ const Home = () => {
             ))}
           </Swiper>
 
-          <div className="absolute bottom-8 right-16 flex gap-4 z-20">
-            <button className="py-2 px-4 bg-blue-500 rounded-md text-white cursor-pointer active:scale-95 duration-300 transition-all">
+          <div className="absolute -top-12 right-0 flex gap-4 z-20">
+            <button
+              onClick={() => swiperBestProductRef.current?.slidePrev()}
+              className="py-2 px-4 bg-blue-500 rounded-md text-white cursor-pointer active:scale-95 duration-300 transition-all"
+            >
               <IoIosArrowBack className="text-xl cursor-pointer" />
             </button>
-            <button className="py-2 px-4 bg-blue-500 rounded-md text-white cursor-pointer active:scale-95 duration-300 transition-all">
+            <button
+              onClick={() => swiperBestProductRef.current?.slideNext()}
+              className="py-2 px-4 bg-blue-500 rounded-md text-white cursor-pointer active:scale-95 duration-300 transition-all"
+            >
               <IoIosArrowForward className="text-xl cursor-pointer" />
             </button>
           </div>
         </div>
+      </div>
+
+      {/* Ads Banner */}
+      <div className="w-full px-16 py-10 rounded-md">
+        <img
+          className="w-full h-full object-contain rounded-md shadow"
+          src={assets.adsBanner}
+          alt=""
+        />
+      </div>
+
+      {/* Our Brands */}
+      <div className="py-10 px-16">
+        <div className="flex justify-center flex-col items-center gap-1">
+          <h2 className="text-neutral-900 text-4xl font-bold gap-2">
+            Our Brands
+          </h2>
+          <p className="text-sm text-neutral-800">
+            E-commerce platform dedicated to providing safe
+          </p>
+        </div>
+
+        <Swiper
+          autoplay={true}
+          slidesPerView={4}
+          spaceBetween={30}
+          loop={true}
+          modules={[Autoplay]}
+          className="w-full mt-10 flex"
+        >
+          {brands.map((item) => (
+            <SwiperSlide
+              key={item.id}
+              className="flex items-center justify-center"
+            >
+              <div className="w-40 h-24 flex items-center justify-center">
+                <img
+                  className="w-full h-full object-contain"
+                  src={item.imgURL}
+                  alt=""
+                />
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+
+      {/* Just For You */}
+      <div className="py-10 px-16">
+        <div className="flex justify-center flex-col items-center gap-1">
+          <h2 className="text-neutral-900 text-4xl font-bold gap-2">
+            Just For You
+          </h2>
+          <p className="text-sm text-neutral-800">
+            Visit our all product and choise any product
+          </p>
+        </div>
+        <div className="w-full grid grid-cols-4 gap-8 mt-10">
+          <ProductCard
+            title={"Nothing Products"}
+            newPrice={3000}
+            oldPrice={2400}
+            imgURL={assets.product_05}
+          />
+          <ProductCard
+            title={"Nothing Products"}
+            newPrice={3000}
+            oldPrice={2400}
+            imgURL={assets.product_05}
+          />
+          <ProductCard
+            title={"Nothing Products"}
+            newPrice={3000}
+            oldPrice={2400}
+            imgURL={assets.product_05}
+          />
+          <ProductCard
+            title={"Nothing Products"}
+            newPrice={3000}
+            oldPrice={2400}
+            imgURL={assets.product_05}
+          />
+          <ProductCard
+            title={"Nothing Products"}
+            newPrice={3000}
+            oldPrice={2400}
+            imgURL={assets.product_05}
+          />
+          <ProductCard
+            title={"Nothing Products"}
+            newPrice={3000}
+            oldPrice={2400}
+            imgURL={assets.product_05}
+          />
+          <ProductCard
+            title={"Nothing Products"}
+            newPrice={3000}
+            oldPrice={2400}
+            imgURL={assets.product_05}
+          />
+          <ProductCard
+            title={"Nothing Products"}
+            newPrice={3000}
+            oldPrice={2400}
+            imgURL={assets.product_05}
+          />
+          <ProductCard
+            title={"Nothing Products"}
+            newPrice={3000}
+            oldPrice={2400}
+            imgURL={assets.product_05}
+          />
+          <ProductCard
+            title={"Nothing Products"}
+            newPrice={3000}
+            oldPrice={2400}
+            imgURL={assets.product_05}
+          />
+          <ProductCard
+            title={"Nothing Products"}
+            newPrice={3000}
+            oldPrice={2400}
+            imgURL={assets.product_05}
+          />
+          <ProductCard
+            title={"Nothing Products"}
+            newPrice={3000}
+            oldPrice={2400}
+            imgURL={assets.product_05}
+          />
+          <ProductCard
+            title={"Nothing Products"}
+            newPrice={3000}
+            oldPrice={2400}
+            imgURL={assets.product_05}
+          />
+          <ProductCard
+            title={"Nothing Products"}
+            newPrice={3000}
+            oldPrice={2400}
+            imgURL={assets.product_05}
+          />
+          <ProductCard
+            title={"Nothing Products"}
+            newPrice={3000}
+            oldPrice={2400}
+            imgURL={assets.product_05}
+          />
+          <ProductCard
+            title={"Nothing Products"}
+            newPrice={3000}
+            oldPrice={2400}
+            imgURL={assets.product_05}
+          />
+        </div>
+      </div>
+
+      <div className="w-full pt-10">
+        <marquee className="py-4 bg-blue-500 text-neutral-50 font-medium tracking-normal">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Explicabo
+          deleniti dicta facilis ipsam provident repellat laboriosam, odit, ipsa
+          quae praesentium quis incidunt distinctio consectetur optio velit?
+          Nihil praesentium est labore.
+        </marquee>
       </div>
     </div>
   );
